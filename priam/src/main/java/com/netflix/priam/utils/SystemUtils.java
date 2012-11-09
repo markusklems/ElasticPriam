@@ -50,6 +50,7 @@ public class SystemUtils
         List<String> command = Lists.newArrayList();
         if (!"root".equals(System.getProperty("user.name")))
         {
+            logger.info("Running as user "+System.getProperty("user.name"));
             command.add(SUDO_STRING);
             command.add("-n");
             command.add("-E");

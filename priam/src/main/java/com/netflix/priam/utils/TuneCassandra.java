@@ -9,6 +9,8 @@ import java.util.Map;
 
 import org.apache.cassandra.db.HintedHandOffManager;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.DumperOptions;
@@ -90,6 +92,7 @@ public class TuneCassandra extends Task
 
         configureGlobalCaches(config, map);
 
+        logger.info("Show the generated yaml file:");
         logger.info(yaml.dump(map));
         yaml.dump(map, new FileWriter(yamlFile));
     }
@@ -139,7 +142,7 @@ public class TuneCassandra extends Task
         DumperOptions options = new DumperOptions();
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
         Yaml yaml = new Yaml(options);
-        File yamlFile = new File(config.getCassHome() + "/conf/cassandra.yaml");
+        File yamlFile = new File(config.getCassHome() + "/cassandra.yaml");
         @SuppressWarnings("rawtypes")
         Map map = (Map) yaml.load(new FileInputStream(yamlFile));
         //Dont bootstrap in restore mode
@@ -151,7 +154,18 @@ public class TuneCassandra extends Task
     @Override
     public void execute() throws IOException
     {
-        TuneCassandra.updateYaml(config, config.getCassHome() + "/conf/cassandra.yaml", null, config.getSeedProviderName());
+        // Retrieve the local IP of the EC2 machine.
+//        HttpClient client = new HttpClient();
+//        String localIpURL = "http://169.254.169.254/latest/meta-data/local-ipv4";
+//        GetMethod method = new GetMethod(localIpURL);
+//        client.executeMethod(method);
+//        byte[] responseBody = method.getResponseBody();
+//        String localIP = new String(responseBody);
+//        logger.info("Local IP is "+localIP);
+//        logger.info("Execute TuneCassandra.updateYaml now.");
+//        
+//        TuneCassandra.updateYaml(config, config.getCassHome() + "/cassandra.yaml", localIP, config.getSeedProviderName());
+        TuneCassandra.updateYaml(config, config.getCassHome() + "/cassandra.yaml", null, config.getSeedProviderName());
     }
 
     @Override

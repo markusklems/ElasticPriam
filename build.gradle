@@ -15,8 +15,10 @@ apply from: file('gradle/convention.gradle')
 apply from: file('gradle/maven.gradle')
 apply from: file('gradle/check.gradle')
 //apply from: file('gradle/license.gradle') // Waiting for re-release
+apply plugin: 'eclipse'
 
 subprojects {
+    apply plugin: 'eclipse'
     // Closure to configure all the POM with extra info, common to all projects
     pom {
         project {
@@ -76,6 +78,7 @@ subprojects {
 }
 
 project(':priam') {
+    apply plugin: 'eclipse'
     dependencies {
     }
     test {
@@ -85,6 +88,7 @@ project(':priam') {
 }
 
 project(':priam-web') {
+    apply plugin: 'eclipse'
     apply plugin: 'war'
     apply plugin: 'jetty'
     dependencies {

@@ -114,12 +114,12 @@ public class PriamConfiguration implements IConfiguration
     private final String DEFAULT_CASS_START_SCRIPT = "/etc/init.d/cassandra start";
     private final String DEFAULT_CASS_STOP_SCRIPT = "/etc/init.d/cassandra stop";
     private final String DEFAULT_BACKUP_LOCATION = "backup";
-    private final String DEFAULT_BUCKET_NAME = "cassandra-archive";
-    private String DEFAULT_AVAILABILITY_ZONES = "";
+    private final String DEFAULT_BUCKET_NAME = "cassandra-archive-AKIAJOPOBQEEHSJ7C62A".toLowerCase();
+    private String DEFAULT_AVAILABILITY_ZONES = "us-east-1b";
 
-    private final String DEFAULT_MAX_DIRECT_MEM = "50G";
-    private final String DEFAULT_MAX_HEAP = "8G";
-    private final String DEFAULT_MAX_NEWGEN_HEAP = "2G";
+    private final String DEFAULT_MAX_DIRECT_MEM = "25G";
+    private final String DEFAULT_MAX_HEAP = "4G";
+    private final String DEFAULT_MAX_NEWGEN_HEAP = "1G";
     private final int DEFAULT_JMX_PORT = 7199;
     private final int DEFAULT_THRIFT_PORT = 9160;
     private final int DEFAULT_STORAGE_PORT = 7000;
